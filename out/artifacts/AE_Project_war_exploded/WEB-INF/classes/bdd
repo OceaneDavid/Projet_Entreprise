@@ -1,0 +1,31 @@
+CREATE DATABASE if not exists AE;
+USE AE;
+
+CREATE TABLE if not exists user
+(
+    id int NOT NULL auto_increment primary key,
+    username varchar(20),
+    email varchar(60),
+    mdp varchar(20)
+)CHARACTER SET latin1 COLLATE latin1_general_ci;
+
+CREATE TABLE if not exists post
+(
+    id int NOT NULL auto_increment primary key,
+    email varchar(60),
+    message varchar(300)
+)CHARACTER SET latin1 COLLATE latin1_general_ci;
+
+CREATE TABLE if not exists com
+(
+    id int NOT NULL auto_increment primary key,
+    email varchar(60),
+    message varchar(300)
+)CHARACTER SET latin1 COLLATE latin1_general_ci;
+
+CREATE TABLE if not exists relation
+(
+    id int NOT NULL auto_increment primary key,
+    email1 varchar(60),
+    email2 varchar(60)
+)CHARACTER SET latin1 COLLATE latin1_general_ci;

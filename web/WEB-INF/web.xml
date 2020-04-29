@@ -19,6 +19,11 @@
         <servlet-class>Inscription</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>Post</servlet-name>
+        <servlet-class>Post</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Accueil</servlet-name>
         <url-pattern>/Accueil</url-pattern>
@@ -32,6 +37,11 @@
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Post</servlet-name>
+        <url-pattern>/Post</url-pattern>
     </servlet-mapping>
 
 </web-app>

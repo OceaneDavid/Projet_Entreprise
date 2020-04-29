@@ -20,8 +20,8 @@
     </servlet>
 
     <servlet>
-        <servlet-name>GestionJDBC</servlet-name>
-        <servlet-class>GestionJDBC</servlet-class>
+        <servlet-name>Post</servlet-name>
+        <servlet-class>Post</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -40,8 +40,8 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>GestionJDBC</servlet-name>
-        <url-pattern>/jdbc</url-pattern>
+        <servlet-name>Post</servlet-name>
+        <url-pattern>/Post</url-pattern>
     </servlet-mapping>
 
 </web-app>

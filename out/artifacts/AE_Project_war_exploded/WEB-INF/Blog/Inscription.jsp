@@ -42,5 +42,7 @@
 
 </form>
 
+<p>Vous avez déjà un compte ? Connectez-vous vous en cliquant <input type="button" value="ici" OnClick="window.location.href = 'http://localhost:8080/AE_Project_war_exploded/Connexion'" />
+</p>
 </body>
 </html>

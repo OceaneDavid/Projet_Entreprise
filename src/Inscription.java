@@ -37,14 +37,16 @@ public class Inscription extends HttpServlet {
 
                 int statut = stmt.executeUpdate("INSERT INTO user (username, email, mdp) "
                         + "VALUES ('" + id + "', '" + admail + "', '" + pwd + "');");
-                System.out.println(statut);
+                //System.out.println(statut);
                 //while (rs.next())
                 //    System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3));
                 con.close();
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
-            response.sendRedirect(path + "/Accueil");
+            request.setAttribute("username", id);
+        request.setAttribute("email", admail);
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/Blog/Accueil.jsp" ).forward( request, response );
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
