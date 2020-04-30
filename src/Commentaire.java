@@ -8,14 +8,16 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(name = "Post")
-public class Post extends HttpServlet {
+@WebServlet(name = "Commentaire")
+public class Commentaire extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String path = this.getServletContext().getContextPath();
         HttpSession session = request.getSession();
-        String texte = request.getParameter("contenu");
+        String comment = request.getParameter("comm");
         String admail = (String) session.getAttribute("email");
+        String idbut = request.getParameter("bouton");
+        String idb = request.getParameter("id");
         ArrayList<ArrayList<String>> posts = new ArrayList<>();
         ArrayList<ArrayList<String>> coms = new ArrayList<>();
 
@@ -25,8 +27,8 @@ public class Post extends HttpServlet {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "root", "root");
             Statement stmt = con.createStatement();
 
-            int statut = stmt.executeUpdate("INSERT INTO post (email, message) "
-                    + "VALUES ('" + admail + "', '" + texte + "');");
+            //int statut = stmt.executeUpdate("INSERT INTO com (postid, email, message) "
+            //        + "VALUES ('" + idbut + "', '" + admail + "', '" + comment + "');");
 
             posts.add(new ArrayList<String>());
             ResultSet rs2 = stmt.executeQuery("SELECT id, message FROM post WHERE email = '" + admail + "';");
@@ -69,7 +71,7 @@ public class Post extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        this.getServletContext().getRequestDispatcher( "/WEB-INF/Blog/Post.jsp" ).forward( request, response );
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/Blog/Commentaire.jsp" ).forward( request, response );
 
     }
 }

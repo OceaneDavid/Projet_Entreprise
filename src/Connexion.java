@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
-
 @WebServlet(name = "Connexion")
 public class Connexion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,11 +15,12 @@ public class Connexion extends HttpServlet {
         String path = this.getServletContext().getContextPath();
         HttpSession session = request.getSession();
 
-        String admail = (request.getParameter("user_mail"));
+        String admail = request.getParameter("user_mail");
         session.setAttribute("email", admail);
         String pwd = request.getParameter("user_pwd");
         session.setAttribute("pwd", pwd);
-        ArrayList<String> posts = new ArrayList<>();
+        ArrayList<ArrayList<String>> posts = new ArrayList<>();
+        ArrayList<ArrayList<String>> coms = new ArrayList<>();
 
 
         try {
@@ -43,16 +42,39 @@ public class Connexion extends HttpServlet {
             while(rs1.next()) {
                 String username = rs1.getString(1);
                 request.setAttribute("username", username);
+                session.setAttribute("username", username);
                 request.setAttribute("email", admail);
 
             }
-            ResultSet rs2 = stmt.executeQuery("SELECT message FROM post WHERE email = '" + admail + "';");
+            posts.add(new ArrayList<String>());
+            ResultSet rs2 = stmt.executeQuery("SELECT id, message FROM post WHERE email = '" + admail + "';");
             while (rs2.next()) {
+                int x = 0;
                 int i = 1;
-                posts.add(rs2.getString(i));
-                i++;
+                int j = 2;
+                posts.get(x).add(rs2.getString(i));
+                posts.get(x).add(rs2.getString(j));
+                x++;
+                j = j + 2;
+                i = i + 2;
             }
             request.setAttribute("post", posts);
+            coms.add(new ArrayList<String>());
+            ResultSet rs3 = stmt.executeQuery("SELECT postid, username, com.message FROM post, user, com WHERE post.email = '" + admail + "' AND user.email = post.email AND postid = post.id;");
+            while (rs3.next()) {
+                int x = 0;
+                int i = 1;
+                int j = 2;
+                int k = 3;
+                coms.get(x).add(rs3.getString(i));
+                coms.get(x).add(rs3.getString(j) + " a dit '" + rs3.getString(k) + "'");
+                //coms.get(x).add(rs3.getString(k));
+                i = i + 3;
+                j = j + 3;
+                k = k + 3;
+                x++;
+            }
+            request.setAttribute("coms", coms);
             con.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

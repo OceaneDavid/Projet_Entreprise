@@ -7,7 +7,7 @@
     <welcome-file-list>
         <welcome-file>Connexion</welcome-file>
     </welcome-file-list>
-    
+
     <servlet>
         <servlet-name>Accueil</servlet-name>
         <servlet-class>Accueil</servlet-class>
@@ -28,6 +28,11 @@
         <servlet-class>Post</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>Commentaire</servlet-name>
+        <servlet-class>Commentaire</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Accueil</servlet-name>
         <url-pattern>/Accueil</url-pattern>
@@ -46,6 +51,11 @@
     <servlet-mapping>
         <servlet-name>Post</servlet-name>
         <url-pattern>/Post</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Commentaire</servlet-name>
+        <url-pattern>/Commentaire</url-pattern>
     </servlet-mapping>
 
 </web-app>
