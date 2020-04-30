@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
 <h1>Connexion</h1>

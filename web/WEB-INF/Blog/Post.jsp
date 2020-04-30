@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>Nouveau post</title>
-    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
 
