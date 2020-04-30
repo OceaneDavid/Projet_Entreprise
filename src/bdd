@@ -29,3 +29,14 @@ CREATE TABLE if not exists relation
     email1 varchar(60),
     email2 varchar(60)
 )CHARACTER SET latin1 COLLATE latin1_general_ci;
+
+INSERT into user (username, email, mdp) values ('Léo', 'leo.brunot@etu.univ-tours.fr', 'bonjour');
+insert into user (username, email, mdp) values ('Océane', 'oceane.david@etu.univ-tous.fr', 'motdepasse');
+
+insert into post (email, message) values  ('leo.brunot@etu.univ-tours.fr', 'Je suis Léo');
+insert into post (email, message) values  ('leo.brunot@etu.univ-tours.fr', 'Il fait beau.');
+
+insert into com (postid, email, message) values  (2, 'oceane.david@etu.univ-tours.fr', 'Oui');
+
+
+
