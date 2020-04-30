@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
 
 @WebServlet(name = "Accueil")
 public class Accueil extends HttpServlet {
@@ -17,12 +18,12 @@ public class Accueil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String admail = (String) session.getAttribute("email");
+        String admail = escapeHtml4((String) session.getAttribute("email"));
         ArrayList<String> posts = new ArrayList<>();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "svenja", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "root", "root");
             Statement stmt = con.createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT message FROM post WHERE email = '" + admail + "';");

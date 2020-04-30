@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
 
 @WebServlet(name = "Post")
 public class Post extends HttpServlet {
@@ -14,14 +15,14 @@ public class Post extends HttpServlet {
 
         String path = this.getServletContext().getContextPath();
         HttpSession session = request.getSession();
-        String texte = request.getParameter("contenu");
-        String admail = (String) session.getAttribute("email");
+        String texte = (request.getParameter("contenu"));
+        String admail = ((String) session.getAttribute("email"));
         ArrayList<String> posts = new ArrayList<>();
 
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "svenja", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "root", "root");
             Statement stmt = con.createStatement();
 
             int statut = stmt.executeUpdate("INSERT INTO post (email, message) "

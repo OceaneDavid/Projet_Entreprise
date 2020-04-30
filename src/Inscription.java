@@ -14,9 +14,9 @@ public class Inscription extends HttpServlet {
         String path = this.getServletContext().getContextPath();
         HttpSession session = request.getSession();
 
-        String id = request.getParameter("user_id");
+        String id = (request.getParameter("user_id"));
         session.setAttribute("id", id);
-        String admail = request.getParameter("user_mail");
+        String admail = (request.getParameter("user_mail"));
         session.setAttribute("email", admail);
         String pwd = request.getParameter("user_pwd");
         session.setAttribute("pwd", pwd);
@@ -24,7 +24,7 @@ public class Inscription extends HttpServlet {
             try {
 
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "svenja", "root");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "root", "root");
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as nb FROM user WHERE email = '" + admail + "';");
                 while(rs.next()){
