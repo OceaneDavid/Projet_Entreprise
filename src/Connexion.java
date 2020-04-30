@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
+
 @WebServlet(name = "Connexion")
 public class Connexion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -15,7 +17,7 @@ public class Connexion extends HttpServlet {
         String path = this.getServletContext().getContextPath();
         HttpSession session = request.getSession();
 
-        String admail = request.getParameter("user_mail");
+        String admail = (request.getParameter("user_mail"));
         session.setAttribute("email", admail);
         String pwd = request.getParameter("user_pwd");
         session.setAttribute("pwd", pwd);
@@ -25,7 +27,7 @@ public class Connexion extends HttpServlet {
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "svenja", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/AE?serverTimezone=UTC", "root", "root");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as nb FROM user WHERE email = '" + admail + "' AND mdp =  '" + pwd + "';");
             while(rs.next()) {

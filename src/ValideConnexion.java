@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public class ValideConnexion {
 
-    //coucou je test !
-
     private static final String CHAMP_EMAIL  = "email";
     private static final String CHAMP_PASS   = "motdepasse";
 

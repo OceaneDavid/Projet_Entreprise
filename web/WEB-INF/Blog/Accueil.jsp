@@ -16,10 +16,15 @@
 <h3>Vos posts : </h3>
 <p>
     <% ArrayList<String> posts = (ArrayList<String>) request.getAttribute("post");
-        for(int i = 0; i < posts.size(); i++) {
-            out.println(posts.get(i)); %>
-            <br />
-           <%}%>
+        if (posts!=null){
+            if (posts.size() > 0)
+            {
+                for(int i = 0; i < posts.size(); i++) {
+                    out.println(posts.get(i)); %>
+    <br />
+    <%}
+    }
+    }%>
 
 </p>
 </body>
